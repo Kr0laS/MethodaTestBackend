@@ -17,8 +17,13 @@ namespace MethodaTest.Controllers
         [HttpGet()]
         public List<Status> GetStatuses()
         {
-            _repo.InferLabel();
             return _repo.Statuses;
+        }
+
+        [HttpGet("{id}")]
+        public Status? GetById(int id)
+        {
+            return _repo.Statuses.FirstOrDefault(t => t.Id == id);
         }
 
         [HttpPost("Add")]

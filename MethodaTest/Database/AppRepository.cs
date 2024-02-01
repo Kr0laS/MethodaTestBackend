@@ -91,5 +91,4 @@ public class AppRepository // didnt implament in memo db cuz of time pressure
         if (firstOrphan is not null)
             firstOrphan.IsOrphan = true;
     }
-
 }

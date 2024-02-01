@@ -17,6 +17,17 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.WithOrigins("http://localhost:3000") //React url
+                       .AllowAnyHeader()
+                       .AllowAnyMethod()
+                       .AllowCredentials();
+            });
+        });
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -26,11 +37,12 @@ public class Program
             app.UseSwaggerUI();
         }
 
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
 
-
+        app.UseCors();
         app.MapControllers();
 
         app.Run();
